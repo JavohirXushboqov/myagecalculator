@@ -1,749 +1,492 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-site-verification" content="ODhazUnk_IL0awKfonf21UFmzsMiGhha8ojP_TLsNH0" />
-  
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L2J3BG7P19"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="ODhazUnk_IL0awKfonf21UFmzsMiGhha8ojP_TLsNH0" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L2J3BG7P19"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-L2J3BG7P19');</script>
+<title>My Age Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#6366f1;--accent:#38bdf8;--bg:#0b0f19;--card:rgba(23,31,51,.75);--input:rgba(15,23,42,.7);--text:#f8fafc;--muted:#94a3b8;--border:rgba(255,255,255,.1);--glow:0 0 25px rgba(99,102,241,.35)}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Plus Jakarta Sans',sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:40px;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;animation:floatOrb 12s infinite alternate ease-in-out}
+.o1{width:420px;height:420px;background:#6366f1;top:-80px;left:-80px}
+.o2{width:380px;height:380px;background:#0284c7;bottom:-80px;right:-60px;animation-delay:-5s}
+.o3{width:260px;height:260px;background:#db2777;top:40%;left:55%;opacity:.18;animation-delay:-8s}
+nav{background:rgba(11,15,25,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 5%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;z-index:100}
+.brand{font-size:1.15rem;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand-icon{width:38px;height:38px;background:linear-gradient(135deg,#6366f1,#3b82f6);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:var(--glow)}
+.brand-icon i{animation:flip 4s infinite ease-in-out}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.lang-btn{background:var(--input);color:var(--text);border:1px solid var(--border);padding:8px 10px;border-radius:9px;font-size:.82rem;font-weight:700;outline:none;cursor:pointer}
+.icon-link{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.1rem;transition:.25s;border:1px solid var(--border);cursor:pointer}
+.l-tg{background:rgba(2,132,199,.2);color:#38bdf8;border-color:rgba(56,189,248,.3)}
+.l-tg:hover{background:#0284c7;color:#fff;transform:translateY(-3px) rotate(-8deg)}
+.l-ig{background:rgba(219,39,119,.2);color:#f472b6;border-color:rgba(244,114,182,.3)}
+.l-ig:hover{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);color:#fff;transform:translateY(-3px) rotate(8deg)}
+.l-play{background:rgba(34,197,94,.2);color:#4ade80;border-color:rgba(74,222,128,.3)}
+.l-play:hover{background:#16a34a;color:#fff;transform:translateY(-3px)}
+.container{max-width:1100px;margin:0 auto;padding:28px 18px}
+.hero{text-align:center;margin-bottom:30px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.3);color:#818cf8;font-size:.78rem;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:14px}
+.badge i{animation:zap 1.6s infinite}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-1px;background:linear-gradient(90deg,#fff,#a5b4fc,#38bdf8,#fff);background-size:250% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+.hero p{color:var(--muted);font-size:1rem;margin-top:8px}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.full{grid-column:1/-1}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;backdrop-filter:blur(12px);box-shadow:0 12px 35px rgba(0,0,0,.3);transition:transform .3s,border-color .3s}
+.card:hover{border-color:rgba(129,140,248,.35)}
+.card-h{font-size:1rem;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.card-h i{color:#818cf8}
+.inputs{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:10px;margin-bottom:16px}
+.ib label{display:block;font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+.wi{width:100%;background:var(--input);border:1px solid var(--border);color:#fff;padding:12px;border-radius:11px;font-size:1rem;font-weight:600;outline:none;transition:.2s}
+.wi:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(99,102,241,.25)}
+select.wi option{background:#0f172a}
+.err{color:#fb7185;font-size:.8rem;font-weight:600;min-height:18px;margin-bottom:8px}
+.btns{display:flex;gap:10px}
+.btn{flex:1;padding:13px;border-radius:11px;font-weight:700;font-size:.92rem;border:none;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden}
+.b-calc{background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff;box-shadow:var(--glow)}
+.b-calc::after{content:'';position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);animation:sweep 3.5s infinite}
+.b-calc:hover{transform:translateY(-2px)}
+.b-calc:active,.btn:active{transform:scale(.97)}
+.b-reset{background:var(--input);color:var(--muted);border:1px solid var(--border)}
+.b-reset:hover{color:#fff;background:rgba(255,255,255,.06)}
+.res{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--input);border:1px solid var(--border);border-radius:14px;padding:16px 8px;text-align:center;transition:.25s;opacity:0;transform:translateY(14px) scale(.96)}
+.show .stat{animation:pop .5s forwards}
+.show .stat:nth-child(2){animation-delay:.08s}.show .stat:nth-child(3){animation-delay:.16s}.show .stat:nth-child(4){animation-delay:.24s}.show .stat:nth-child(5){animation-delay:.32s}.show .stat:nth-child(6){animation-delay:.4s}.show .stat:nth-child(7){animation-delay:.48s}.show .stat:nth-child(8){animation-delay:.56s}
+.stat:hover{border-color:#818cf8;transform:translateY(-3px)!important}
+.sv{font-size:1.7rem;font-weight:800;color:#818cf8;display:block;line-height:1.1}
+.sv.s{font-size:1.05rem;color:#38bdf8;margin-top:6px}
+.sl{font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;margin-top:5px;display:block}
+.wide{grid-column:span 3;background:linear-gradient(135deg,rgba(99,102,241,.14),rgba(56,189,248,.14));border-color:rgba(99,102,241,.3)}
+.empty{text-align:center;color:var(--muted);padding:30px 10px;font-size:.9rem}
+.empty i{font-size:2.2rem;color:#818cf8;display:block;margin-bottom:12px;animation:float 3s infinite ease-in-out}
+.live{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.live div{background:rgba(15,23,42,.9);border:1px solid var(--border);border-radius:12px;padding:10px 4px;text-align:center}
+.live b{display:block;font-size:1.05rem;color:#4ade80;font-variant-numeric:tabular-nums}
+.live span{font-size:.65rem;color:var(--muted);text-transform:uppercase;font-weight:700}
+.banner{display:flex;align-items:center;gap:16px;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(30,41,59,.8),rgba(15,23,42,.9))}
+.banner::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(99,102,241,.15),transparent 65%);animation:pulseGlow 5s infinite alternate}
+.bi{width:50px;height:50px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:13px;display:flex;align-items:center;justify-content:center;color:#818cf8;font-size:1.3rem;flex-shrink:0;z-index:2;animation:float 3s infinite ease-in-out}
+.bc{z-index:2}.bt{font-weight:700;color:#fff}.bd{font-size:.82rem;color:var(--muted);margin-top:2px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;background:var(--input);padding:5px;border-radius:13px;border:1px solid var(--border)}
+.tab{padding:12px;border-radius:10px;border:none;background:transparent;color:var(--muted);font-weight:700;font-size:.9rem;cursor:pointer;transition:.25s;display:flex;align-items:center;justify-content:center;gap:8px}
+.tab.active{background:var(--primary);color:#fff;box-shadow:0 2px 12px rgba(99,102,241,.4)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.zb{background:var(--input);border:1px solid var(--border);padding:14px 6px;border-radius:12px;color:var(--text);font-size:.88rem;font-weight:700;cursor:pointer;transition:.25s;min-height:48px;animation:pop .4s backwards}
+.zb:hover{border-color:var(--accent);background:rgba(56,189,248,.12);transform:translateY(-3px)}
+.zb.active{border-color:#818cf8;background:rgba(99,102,241,.3);box-shadow:0 0 15px rgba(99,102,241,.4)}
+.detail{background:rgba(15,23,42,.95);border:1px solid var(--primary);border-radius:14px;padding:16px;animation:slideUp .35s}
+.dt{color:#818cf8;font-weight:700;display:flex;align-items:center;gap:6px}
+.ds{font-size:.78rem;color:var(--muted);font-weight:600;margin:2px 0 8px;display:block}
+.dx{font-size:.88rem;color:#cbd5e1;line-height:1.55}
+.links{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.lk{display:flex;align-items:center;gap:14px;padding:18px;border-radius:16px;background:var(--input);border:1px solid var(--border);text-decoration:none;color:inherit;cursor:pointer;transition:.3s;position:relative;overflow:hidden}
+.lk:hover{transform:translateY(-5px)}
+.li{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.ln{font-weight:800;color:#fff;display:block}
+.ld{font-size:.78rem;color:var(--muted);display:block;margin-top:2px}
+.ar{margin-left:auto;color:var(--muted);transition:.2s}
+.lk:hover .ar{color:#fff;transform:translateX(4px)}
+.k-tg{border-color:rgba(56,189,248,.3);animation:pulseB 2.5s infinite alternate}
+.k-tg .li{background:rgba(2,132,199,.2);color:#38bdf8}
+.k-tg:hover{background:rgba(2,132,199,.15);border-color:#38bdf8}
+.k-ig{border-color:rgba(244,114,182,.3);animation:pulseI 2.5s infinite alternate}
+.k-ig .li{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);color:#fff}
+.k-ig:hover{background:rgba(219,39,119,.12);border-color:#f472b6}
+.k-pl{border-color:rgba(74,222,128,.25)}
+.k-pl .li{background:rgba(34,197,94,.15);color:#4ade80}
+.k-pl:hover{background:rgba(34,197,94,.1);border-color:#4ade80}
+.modal-bg{position:fixed;inset:0;background:rgba(11,15,25,.8);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;pointer-events:none;transition:.3s}
+.modal-bg.active{opacity:1;pointer-events:auto}
+.modal{background:#171f33;border:1px solid rgba(74,222,128,.4);box-shadow:0 20px 40px rgba(0,0,0,.6);border-radius:22px;padding:26px;max-width:380px;width:90%;text-align:center;transform:scale(.8);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.modal-bg.active .modal{transform:scale(1)}
+.mi{width:58px;height:58px;background:rgba(34,197,94,.15);color:#4ade80;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 16px;border:1px solid rgba(74,222,128,.3);animation:float 2.5s infinite}
+.mt{font-size:1.15rem;font-weight:800;margin-bottom:6px}
+.mx{font-size:.88rem;color:var(--muted);line-height:1.45;margin-bottom:20px}
+.mb{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;padding:12px;border-radius:11px;font-weight:700;cursor:pointer;width:100%}
+.hidden{display:none!important}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+.confetti{position:fixed;top:-12px;width:9px;height:14px;z-index:2000;pointer-events:none;animation:fall linear forwards}
+footer{text-align:center;color:var(--muted);font-size:.78rem;margin-top:34px;line-height:1.8}
+footer a{color:#818cf8;text-decoration:none;font-weight:700}
+@keyframes floatOrb{to{transform:translate(50px,40px)}}
+@keyframes float{50%{transform:translateY(-6px)}}
+@keyframes flip{0%,60%{transform:rotate(0)}80%,100%{transform:rotate(180deg)}}
+@keyframes zap{50%{transform:scale(1.4);color:#facc15}}
+@keyframes shine{to{background-position:250% center}}
+@keyframes sweep{0%,60%{left:-120%}100%{left:160%}}
+@keyframes pop{to{opacity:1;transform:none}}
+@keyframes slideUp{from{opacity:0;transform:translateY(12px)}}
+@keyframes pulseGlow{to{transform:scale(1.15);opacity:.9}}
+@keyframes pulseB{to{box-shadow:0 0 20px rgba(56,189,248,.4)}}
+@keyframes pulseI{to{box-shadow:0 0 20px rgba(244,114,182,.4)}}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg)}}
+@media(max-width:860px){.layout{grid-template-columns:1fr}.links{grid-template-columns:1fr}.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:420px){.sv{font-size:1.35rem}.inputs{gap:6px}.live{grid-template-columns:repeat(2,1fr)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.stat{opacity:1;transform:none}}
 
-    gtag('config', 'G-L2J3BG7P19');
-  </script>
-
-  <title>My Age Calculator</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-
-    :root {
-      --primary: #6366f1;
-      --accent: #38bdf8;
-      --bg: #0b0f19;
-      --card-bg: rgba(23, 31, 51, 0.75);
-      --input-bg: rgba(15, 23, 42, 0.7);
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --border: rgba(255, 255, 255, 0.1);
-      --glow: 0 0 25px rgba(99, 102, 241, 0.35);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-    
-    body { 
-      background: var(--bg); 
-      color: var(--text); 
-      min-height: 100vh; 
-      padding-bottom: 40px; 
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    .bg-animated {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -1; pointer-events: none; overflow: hidden;
-    }
-    .orb {
-      position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35;
-      animation: floatOrb 10s infinite alternate ease-in-out;
-    }
-    .orb-1 { width: 320px; height: 320px; background: #6366f1; top: -50px; left: -50px; }
-    .orb-2 { width: 280px; height: 280px; background: #0284c7; bottom: -50px; right: -50px; animation-delay: -5s; }
-
-    nav { 
-      background: rgba(11, 15, 25, 0.85); 
-      backdrop-filter: blur(16px); 
-      border-bottom: 1px solid var(--border); 
-      padding: 14px 5%; 
-      display: flex; justify-content: space-between; align-items: center; 
-      position: sticky; top: 0; z-index: 100;
-    }
-    .brand { font-size: 1.15rem; font-weight: 800; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-    .brand-icon { 
-      width: 36px; height: 36px; 
-      background: linear-gradient(135deg, #6366f1, #3b82f6); 
-      border-radius: 10px; display: flex; align-items: center; justify-content: center; 
-      color: #fff; font-size: 1.1rem; box-shadow: var(--glow); 
-    }
-
-    .nav-actions { display: flex; align-items: center; gap: 8px; }
-    .lang-btn { 
-      background: var(--input-bg); color: var(--text); border: 1px solid var(--border); 
-      padding: 7px 10px; border-radius: 8px; font-size: 0.82rem; font-weight: 700; outline: none; cursor: pointer; 
-    }
-    .icon-link { 
-      width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; 
-      text-decoration: none; font-size: 1.1rem; transition: 0.2s ease; border: 1px solid var(--border);
-    }
-    .link-tg { background: rgba(2, 132, 199, 0.2); color: #38bdf8; border-color: rgba(56, 189, 248, 0.3); }
-    .link-tg:hover { background: #0284c7; color: #fff; transform: translateY(-2px); }
-    .link-play { background: rgba(34, 197, 94, 0.2); color: #4ade80; border-color: rgba(74, 222, 128, 0.3); }
-    .link-play:hover { background: #16a34a; color: #fff; transform: translateY(-2px); }
-
-    .container { max-width: 680px; margin: 0 auto; padding: 24px 16px; }
-
-    .hero { text-align: center; margin-bottom: 24px; animation: fadeIn 0.8s ease; }
-    .hero-badge { 
-      display: inline-flex; align-items: center; gap: 6px; 
-      background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.3); 
-      color: #818cf8; font-size: 0.75rem; font-weight: 700; padding: 5px 14px; border-radius: 20px; margin-bottom: 12px; 
-    }
-    .hero h1 { font-size: 1.85rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
-    .hero p { color: var(--text-muted); font-size: 0.88rem; margin-top: 4px; }
-
-    .web-card { 
-      background: var(--card-bg); 
-      border: 1px solid var(--border); 
-      border-radius: 18px; 
-      padding: 22px; 
-      margin-bottom: 20px; 
-      backdrop-filter: blur(12px);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.3);
-    }
-
-    .card-header { font-size: 0.95rem; font-weight: 700; color: #f1f5f9; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-    .card-header i { color: #818cf8; }
-
-    .inputs-grid { display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: 10px; margin-bottom: 16px; }
-    .input-box label { display: block; font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; }
-    .web-input { 
-      width: 100%; background: var(--input-bg); border: 1px solid var(--border); 
-      color: #fff; padding: 10px 12px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; outline: none; transition: 0.2s; 
-    }
-    .web-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25); }
-    select.web-input option { background: #0f172a; color: #fff; }
-
-    .btn-row { display: flex; gap: 10px; }
-    .action-btn { 
-      flex: 1; padding: 12px; border-radius: 10px; font-weight: 700; font-size: 0.9rem; 
-      border: none; cursor: pointer; transition: 0.2s ease; display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
-    }
-    .btn-calc { background: linear-gradient(135deg, #6366f1, #4f46e5); color: #fff; box-shadow: var(--glow); }
-    .btn-calc:hover { transform: translateY(-1px); opacity: 0.95; }
-    .btn-reset { background: var(--input-bg); color: var(--text-muted); border: 1px solid var(--border); }
-    .btn-reset:hover { background: rgba(255,255,255,0.06); color: #fff; }
-
-    .results-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; animation: slideUp 0.4s ease-out; }
-    .stat-card { background: var(--input-bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px 10px; text-align: center; }
-    .stat-val { font-size: 1.5rem; font-weight: 800; color: #818cf8; display: block; line-height: 1.1; }
-    .stat-lbl { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
-    .stat-wide { grid-column: span 3; background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(56, 189, 248, 0.12)); border-color: rgba(99, 102, 241, 0.3); }
-
-    .web-anim-card {
-      position: relative;
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
-      border: 1px solid var(--border);
-      border-radius: 16px; padding: 20px; overflow: hidden;
-      display: flex; align-items: center; gap: 16px;
-    }
-    .web-anim-card::after {
-      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 65%);
-      animation: pulseGlow 5s infinite alternate ease-in-out;
-    }
-    .banner-icon { width: 46px; height: 46px; background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #818cf8; font-size: 1.3rem; flex-shrink: 0; z-index: 2; }
-    .banner-content { z-index: 2; }
-    .banner-title { font-size: 0.98rem; font-weight: 700; color: #fff; }
-    .banner-desc { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
-
-    .tab-switcher { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; background: var(--input-bg); padding: 5px; border-radius: 12px; border: 1px solid var(--border); }
-    .tab-btn { padding: 12px; border-radius: 10px; border: none; background: transparent; color: var(--text-muted); font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
-    .tab-btn.active { background: var(--primary); color: #fff; box-shadow: 0 2px 12px rgba(99, 102, 241, 0.4); }
-
-    .items-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
-    .z-item-btn { 
-      background: var(--input-bg); border: 1px solid var(--border); 
-      padding: 14px 6px; border-radius: 12px; color: var(--text); 
-      font-size: 0.9rem; font-weight: 700; cursor: pointer; text-align: center; 
-      transition: all 0.25s ease; display: flex; align-items: center; justify-content: center; min-height: 48px;
-    }
-    .z-item-btn:hover { border-color: var(--accent); background: rgba(56, 189, 248, 0.12); transform: translateY(-2px); }
-    .z-item-btn.active { border-color: #818cf8; background: rgba(99, 102, 241, 0.3); color: #fff; font-weight: 800; box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
-
-    .detail-box { background: rgba(15, 23, 42, 0.95); border: 1px solid var(--primary); border-radius: 14px; padding: 16px; animation: fadeIn 0.3s ease; }
-    .detail-title { color: #818cf8; font-size: 1rem; font-weight: 700; margin-bottom: 2px; display: flex; align-items: center; gap: 6px; }
-    .detail-sub { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; display: block; }
-    .detail-text { font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; }
-
-    .app-cards-list { display: flex; flex-direction: column; gap: 14px; }
-    .app-card-item {
-      display: flex; align-items: center; gap: 14px;
-      padding: 16px; border-radius: 14px;
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      text-decoration: none; cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .app-card-item:hover { transform: translateY(-3px); }
-    .app-icon-wrap {
-      width: 44px; height: 44px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; flex-shrink: 0;
-    }
-    .app-info { flex: 1; }
-    .app-name { font-size: 0.98rem; font-weight: 800; color: #fff; display: block; }
-    .app-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; display: block; }
-
-    .card-play { border-color: rgba(74, 222, 128, 0.25); }
-    .card-play .app-icon-wrap { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
-    .card-play:hover { background: rgba(34, 197, 94, 0.1); border-color: #4ade80; box-shadow: 0 4px 20px rgba(34, 197, 94, 0.25); }
-
-    .card-tg-uz { border-color: rgba(56, 189, 248, 0.3); animation: pulseBorder 2.5s infinite alternate; }
-    .card-tg-uz .app-icon-wrap { background: rgba(2, 132, 199, 0.2); color: #38bdf8; }
-    .card-tg-uz:hover { background: rgba(2, 132, 199, 0.15); border-color: #38bdf8; box-shadow: 0 4px 20px rgba(2, 132, 199, 0.3); }
-
-    .arrow-icon { color: var(--text-muted); font-size: 0.9rem; transition: 0.2s ease; }
-    .app-card-item:hover .arrow-icon { color: #fff; transform: translateX(3px); }
-
-    /* Custom Modern Modal UI */
-    .custom-modal-backdrop {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(11, 15, 25, 0.8); backdrop-filter: blur(8px);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-    }
-    .custom-modal-backdrop.active { opacity: 1; pointer-events: auto; }
-    .custom-modal {
-      background: #171f33; border: 1px solid rgba(74, 222, 128, 0.4);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px rgba(34, 197, 94, 0.2);
-      border-radius: 20px; padding: 24px; max-width: 380px; width: 90%;
-      text-align: center; transform: scale(0.85); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .custom-modal-backdrop.active .custom-modal { transform: scale(1); }
-    .modal-icon {
-      width: 56px; height: 56px; background: rgba(34, 197, 94, 0.15); color: #4ade80;
-      border-radius: 16px; display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem; margin: 0 auto 16px; border: 1px solid rgba(74, 222, 128, 0.3);
-    }
-    .modal-title { font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
-    .modal-text { font-size: 0.88rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 20px; }
-    .modal-btn {
-      background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff;
-      border: none; padding: 11px 24px; border-radius: 10px; font-weight: 700;
-      font-size: 0.9rem; cursor: pointer; transition: 0.2s; width: 100%;
-    }
-    .modal-btn:hover { opacity: 0.9; transform: translateY(-1px); }
-
-    .hidden { display: none !important; }
-
-    @keyframes pulseBorder { 0% { box-shadow: 0 0 5px rgba(56, 189, 248, 0.1); } 100% { box-shadow: 0 0 18px rgba(56, 189, 248, 0.4); } }
-    @keyframes floatOrb { 0% { transform: translate(0, 0); } 100% { transform: translate(35px, 35px); } }
-    @keyframes pulseGlow { 0% { transform: scale(0.9); opacity: 0.4; } 100% { transform: scale(1.1); opacity: 0.9; } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-    footer { text-align: center; color: var(--text-muted); font-size: 0.75rem; margin-top: 30px; }
-  </style>
+.wi{color-scheme:dark}
+.card{transition:transform .3s,border-color .3s,box-shadow .3s}
+.card:hover{box-shadow:0 16px 40px rgba(99,102,241,.18)}
+.prog{margin-top:12px}.pl{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);font-weight:700;margin-bottom:6px}.pl b{color:#4ade80}
+.bar{height:10px;border-radius:10px;background:rgba(255,255,255,.08);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:10px;background:linear-gradient(90deg,#6366f1,#38bdf8,#4ade80);background-size:200% 100%;transition:width 1.4s cubic-bezier(.2,.8,.2,1);animation:shine 4s linear infinite}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.chip{background:rgba(15,23,42,.9);border:1px solid var(--border);border-radius:12px;padding:10px 12px;font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:8px;font-weight:600}
+.chip i{color:#818cf8}.chip b{color:#fff;margin-left:auto}
+.cmp{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.cmp .wi{max-width:220px}
+.cmpr{flex:1;min-width:200px;font-size:.92rem;color:#cbd5e1;line-height:1.5}.cmpr b{color:#4ade80;font-size:1.1rem}
+.zb.mine{border-color:#facc15;box-shadow:0 0 14px rgba(250,204,21,.3)}.zb.mine::after{content:'★';color:#facc15;margin-left:6px}
+.sub{font-size:.82rem;color:var(--muted);margin:-8px 0 16px}
+.links{grid-template-columns:repeat(2,1fr)}
+.dl{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.store{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:18px;text-decoration:none;color:#fff;cursor:pointer;border:1px solid;transition:.3s;position:relative;overflow:hidden}
+.store::after{content:'';position:absolute;top:0;left:-120%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transform:skewX(-20deg);transition:left .7s}
+.store:hover::after{left:160%}
+.store:hover{transform:translateY(-5px) scale(1.01)}
+.store .big{font-size:2.2rem}.store small{display:block;font-size:.72rem;opacity:.85;font-weight:600}.store b{font-size:1.15rem;font-weight:800}
+.s-tg{background:linear-gradient(135deg,#0369a1,#0ea5e9);border-color:#38bdf8;box-shadow:0 8px 24px rgba(14,165,233,.25)}
+.s-pl{background:linear-gradient(135deg,#15803d,#22c55e);border-color:#4ade80;box-shadow:0 8px 24px rgba(34,197,94,.25)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,30px);background:#171f33;border:1px solid #4ade80;color:#fff;padding:12px 20px;border-radius:12px;font-weight:700;font-size:.88rem;opacity:0;pointer-events:none;transition:.35s;z-index:3000}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media(max-width:860px){.links,.dl{grid-template-columns:1fr}.cmp .wi{max-width:none;width:100%}}
+.nav-actions{justify-content:center;flex-wrap:wrap}
+.lk{justify-content:center;padding:20px;gap:14px}.lk .ar{display:none}
+.store{justify-content:center;padding:20px}
+.ln{font-size:1.05rem}
+.act{margin-top:18px;gap:12px}.act .btn{padding:15px 8px;font-size:.95rem;border-radius:13px}
+.ad{padding:26px 10px}
+.ad-num{font-size:clamp(3rem,9vw,4.4rem);font-weight:800;line-height:1;font-variant-numeric:tabular-nums;background:linear-gradient(90deg,#6366f1,#38bdf8,#4ade80);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
+.ad-num small{display:block;font-size:1rem;margin-top:6px;font-weight:700;color:var(--muted);-webkit-text-fill-color:var(--muted)}
+.ad-t{font-size:1.25rem;font-weight:800;color:#fff;margin-top:16px}
+.ad-s{font-size:.88rem;color:var(--muted);margin:8px auto 16px;max-width:320px;line-height:1.5}
+#t-empty{display:inline-block;font-size:.78rem;color:#818cf8;font-weight:700;border:1px dashed rgba(129,140,248,.5);border-radius:20px;padding:6px 14px}
+</style>
 </head>
 <body>
+<div class="bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
 
-  <div class="bg-animated">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
+<nav>
+  <a href="#" class="brand"><div class="brand-icon"><i class="fa-solid fa-hourglass-start"></i></div><span>My Age Calculator</span></a>
+  <div class="nav-actions">
+    <select id="langSelect" class="lang-btn" onchange="switchLanguage(this.value)"><option value="uz">UZ</option><option value="ru">RU</option><option value="en">EN</option></select>
+    <a href="https://t.me/+_5tYgvH77_4yMTM6" target="_blank" rel="noopener" class="icon-link l-tg" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+    <a href="https://instagram.com/javonex" target="_blank" rel="noopener" class="icon-link l-ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a class="icon-link l-play" title="Play Market" onclick="showModal()"><i class="fa-brands fa-google-play"></i></a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="hero">
+    <div class="badge"><i class="fa-solid fa-bolt"></i> <span id="t-badge"></span></div>
+    <h1>My Age Calculator</h1>
+    <p id="t-hero-sub"></p>
   </div>
 
-  <nav>
-    <a href="#" class="brand">
-      <div class="brand-icon"><i class="fa-solid fa-hourglass-start"></i></div>
-      <span>My Age Calculator</span>
-    </a>
-    <div class="nav-actions">
-      <select id="langSelect" class="lang-btn" onchange="switchLanguage(this.value)">
-        <option value="uz">UZ</option>
-        <option value="ru">RU</option>
-        <option value="en">EN</option>
-      </select>
-      <a href="https://t.me/JavoAgeBot" target="_blank" class="icon-link link-tg" title="Telegram Bot">
-        <i class="fa-brands fa-telegram"></i>
-      </a>
-      <a href="#" class="icon-link link-play" title="Play Market App" onclick="showModal()">
-        <i class="fa-brands fa-google-play"></i>
-      </a>
-    </div>
-  </nav>
-
-  <div class="container">
-    
-    <div class="hero">
-      <div class="hero-badge"><i class="fa-solid fa-bolt"></i> <span id="t-badge">Tezkor va Mukammal</span></div>
-      <h1>My Age Calculator</h1>
-      <p id="t-hero-sub">Tug'ilgan sanangizni kiriting va shaxsiy ma'lumotlaringizni oling.</p>
-    </div>
-
-    <div class="web-card">
-      <div class="card-header"><i class="fa-solid fa-calendar-check"></i> <span id="t-birth-title">Tug'ilgan kuningiz</span></div>
-      
+  <div class="layout">
+    <div class="card reveal">
+      <div class="card-h"><i class="fa-solid fa-calendar-check"></i> <span id="t-birth-title"></span></div>
       <form onsubmit="calculateAge(event)">
-        <div class="inputs-grid">
-          <div class="input-box">
-            <label id="t-lbl-day">Kun</label>
-            <input type="number" id="day" class="web-input" placeholder="15" min="1" max="31" required>
-          </div>
-          <div class="input-box">
-            <label id="t-lbl-month">Oy</label>
-            <select id="month" class="web-input" required></select>
-          </div>
-          <div class="input-box">
-            <label id="t-lbl-year">Yil</label>
-            <input type="number" id="year" class="web-input" placeholder="2008" min="1900" max="2026" required>
-          </div>
+        <div class="inputs">
+          <div class="ib"><label id="t-lbl-day"></label><input type="number" id="day" class="wi" placeholder="15" min="1" max="31" required></div>
+          <div class="ib"><label id="t-lbl-month"></label><select id="month" class="wi" required></select></div>
+          <div class="ib"><label id="t-lbl-year"></label><input type="number" id="year" class="wi" placeholder="2008" min="1900" required></div>
         </div>
-
-        <div class="btn-row">
-          <button type="submit" class="action-btn btn-calc"><i class="fa-solid fa-calculator"></i> <span id="t-btn-calc">Hisoblash</span></button>
-          <button type="button" class="action-btn btn-reset" onclick="clearAll()"><i class="fa-solid fa-rotate-left"></i> <span id="t-btn-reset">Tozalash</span></button>
+        <div class="err" id="err"></div>
+        <div class="btns">
+          <button type="submit" class="btn b-calc"><i class="fa-solid fa-calculator"></i> <span id="t-btn-calc"></span></button>
+          <button type="button" class="btn b-reset" onclick="clearAll()"><i class="fa-solid fa-rotate-left"></i> <span id="t-btn-reset"></span></button>
         </div>
       </form>
     </div>
 
-    <div id="results" class="web-card hidden">
-      <div class="card-header"><i class="fa-solid fa-chart-simple"></i> <span id="t-res-header">Sizning Natijalaringiz</span></div>
-      <div class="results-layout">
-        <div class="stat-card">
-          <span id="resY" class="stat-val">0</span>
-          <span class="stat-lbl" id="t-lbl-y">Yil</span>
+    <div class="card reveal" id="resCard">
+      <div class="card-h"><i class="fa-solid fa-chart-simple"></i> <span id="t-res-header"></span></div>
+      <div id="empty" class="empty ad">
+        <div class="ad-num"><span id="adNum">0</span><small id="t-ad-unit"></small></div>
+        <div class="ad-t" id="t-ad-title"></div>
+        <div class="ad-s" id="t-ad-sub"></div>
+        <span id="t-empty"></span>
+      </div>
+      <div id="results" class="hidden">
+        <div class="res" id="resGrid">
+          <div class="stat"><span id="resY" class="sv">0</span><span class="sl" id="t-lbl-y"></span></div>
+          <div class="stat"><span id="resM" class="sv">0</span><span class="sl" id="t-lbl-m"></span></div>
+          <div class="stat"><span id="resD" class="sv">0</span><span class="sl" id="t-lbl-d"></span></div>
+          <div class="stat"><span class="sl" id="t-lbl-totaldays" style="margin:0 0 4px"></span><span id="resTotalDays" class="sv s" style="color:#fff;margin:0">0</span></div>
+          <div class="stat"><span class="sl" id="t-lbl-zodiac" style="margin:0 0 4px"></span><span id="resZodiac" class="sv s" style="margin:0">-</span></div>
+          <div class="stat"><span class="sl" id="t-lbl-muchal" style="margin:0 0 4px"></span><span id="resMuchal" class="sv s" style="margin:0">-</span></div>
+          <div class="stat wide"><span class="sl" id="t-lbl-nextbday" style="margin:0 0 2px"></span><span id="resNextBday" class="sv" style="color:#4ade80">-</span></div>
         </div>
-        <div class="stat-card">
-          <span id="resM" class="stat-val">0</span>
-          <span class="stat-lbl" id="t-lbl-m">Oy</span>
+        <div class="prog"><div class="pl"><span id="t-prog"></span><b id="progPct">0%</b></div><div class="bar"><i id="progBar"></i></div></div>
+        <div class="chips">
+          <div class="chip"><i class="fa-regular fa-calendar"></i><span id="t-wd"></span><b id="resWd">-</b></div>
+          <div class="chip"><i class="fa-solid fa-heart-pulse"></i><span id="t-hb"></span><b id="resHb">-</b></div>
         </div>
-        <div class="stat-card">
-          <span id="resD" class="stat-val">0</span>
-          <span class="stat-lbl" id="t-lbl-d">Kun</span>
+        <div class="live">
+          <div><b id="lvH">0</b><span id="t-lh"></span></div>
+          <div><b id="lvMin">0</b><span id="t-lmin"></span></div>
+          <div><b id="lvS">0</b><span id="t-ls"></span></div>
+          <div><b id="lvW">0</b><span id="t-lw"></span></div>
         </div>
-        
-        <div class="stat-card">
-          <span class="stat-lbl" id="t-lbl-totaldays">Jami Kun</span>
-          <span id="resTotalDays" class="stat-val" style="font-size:1.1rem; color:#fff; margin-top:4px;">0</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-lbl" id="t-lbl-zodiac">Burj</span>
-          <span id="resZodiac" class="stat-val" style="font-size:1.05rem; color:#38bdf8; margin-top:4px;">-</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-lbl" id="t-lbl-muchal">Muchal</span>
-          <span id="resMuchal" class="stat-val" style="font-size:1.05rem; color:#38bdf8; margin-top:4px;">-</span>
-        </div>
-
-        <div class="stat-card stat-wide">
-          <span class="stat-lbl" id="t-lbl-nextbday">Keyingi Tug'ilgan Kunga Qoldi</span>
-          <span id="resNextBday" class="stat-val" style="color:#4ade80; margin-top:2px;">-</span>
+        <div class="btns act">
+          <button class="btn b-calc" onclick="shareResult()"><i class="fa-solid fa-share-nodes"></i> <span id="t-share"></span></button>
+          <button class="btn b-reset" onclick="downloadResult()"><i class="fa-solid fa-download"></i> <span id="t-save"></span></button>
         </div>
       </div>
     </div>
 
-    <div class="web-card web-anim-card">
-      <div class="banner-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-      <div class="banner-content">
-        <div class="banner-title" id="t-banner-title">Smart Analitika va Interaktivlik</div>
-        <div class="banner-desc" id="t-banner-desc">Har bir bosilgan tugma animatsiya va to'liq ma'lumotlar bilan ta'minlangan.</div>
+    <div class="card banner full reveal">
+      <div class="bi"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+      <div class="bc"><div class="bt" id="t-banner-title"></div><div class="bd" id="t-banner-desc"></div></div>
+    </div>
+
+    <div class="card full reveal">
+      <div class="card-h"><i class="fa-solid fa-book-bookmark"></i> <span id="t-ref-header"></span></div>
+      <div class="tabs">
+        <button id="tabZodiac" class="tab active" onclick="switchCategory('zodiac')"><i class="fa-solid fa-star"></i> <span id="t-tab-zodiac"></span></button>
+        <button id="tabMuchal" class="tab" onclick="switchCategory('muchal')"><i class="fa-solid fa-dragon"></i> <span id="t-tab-muchal"></span></button>
+      </div>
+      <div id="gridContainer" class="grid"></div>
+      <div id="detailView" class="detail hidden">
+        <div class="dt"><i class="fa-solid fa-circle-info"></i> <span id="detTitle"></span></div>
+        <span id="detSub" class="ds"></span><p id="detText" class="dx"></p>
       </div>
     </div>
 
-    <div class="web-card">
-      <div class="card-header"><i class="fa-solid fa-book-bookmark"></i> <span id="t-ref-header">Burj va Muchal Ma'lumotnomasi</span></div>
-      
-      <div class="tab-switcher">
-        <button id="tabZodiac" class="tab-btn active" onclick="switchCategory('zodiac')"><i class="fa-solid fa-star"></i> <span id="t-tab-zodiac">Burjlar</span></button>
-        <button id="tabMuchal" class="tab-btn" onclick="switchCategory('muchal')"><i class="fa-solid fa-dragon"></i> <span id="t-tab-muchal">Muchallar</span></button>
-      </div>
-
-      <div id="gridContainer" class="items-grid"></div>
-
-      <div id="detailView" class="detail-box hidden">
-        <div id="detTitle" class="detail-title"><i class="fa-solid fa-circle-info"></i> <span></span></div>
-        <span id="detSub" class="detail-sub"></span>
-        <p id="detText" class="detail-text"></p>
-      </div>
-    </div>
-
-    <div class="web-card">
-      <div class="card-header"><i class="fa-solid fa-paper-plane"></i> <span id="t-apps-header">Ilovalar va Botlar</span></div>
-      
-      <div class="app-cards-list">
-        
-        <div class="app-card-item card-play" onclick="showModal()">
-          <div class="app-icon-wrap">
-            <i class="fa-brands fa-google-play"></i>
-          </div>
-          <div class="app-info">
-            <span class="app-name">Play Market</span>
-            <span class="app-desc" id="t-play-desc">Rasmiy mobil ilovani yuklab olish uchun o'ting.</span>
-          </div>
-          <i class="fa-solid fa-chevron-right arrow-icon"></i>
-        </div>
-
-        <a href="https://t.me/JavoAgeBot" target="_blank" class="app-card-item card-tg-uz">
-          <div class="app-icon-wrap">
-            <i class="fa-brands fa-telegram"></i>
-          </div>
-          <div class="app-info">
-            <span class="app-name" id="t-tg-title">Telegram Bot</span>
-            <span class="app-desc" id="t-tg-desc">Rasmiy Telegram botimizga o'tish.</span>
-          </div>
-          <i class="fa-solid fa-chevron-right arrow-icon"></i>
+    <div class="card full reveal" id="social">
+      <div class="card-h"><i class="fa-solid fa-share-nodes"></i> <span id="t-soc-header"></span></div>
+      <div class="links">
+        <a href="https://t.me/+_5tYgvH77_4yMTM6" target="_blank" rel="noopener" class="lk k-tg">
+          <div class="li"><i class="fa-brands fa-telegram"></i></div><span class="ln">Telegram</span>
         </a>
-
+        <a href="https://instagram.com/javonex" target="_blank" rel="noopener" class="lk k-ig">
+          <div class="li"><i class="fa-brands fa-instagram"></i></div><span class="ln">Instagram</span>
+        </a>
       </div>
     </div>
 
-  </div>
-
-  <div id="customModal" class="custom-modal-backdrop" onclick="closeModal(event)">
-    <div class="custom-modal">
-      <div class="modal-icon"><i class="fa-solid fa-rocket"></i></div>
-      <div class="modal-title" id="t-modal-title">Jarayon Davom Etmoqda</div>
-      <div class="modal-text" id="t-modal-text">Play Market ilovamiz yaqin kunlarda taqdim etiladi. Yangiliklarni kuzatib boring!</div>
-      <button class="modal-btn" onclick="closeModalDirect()"><span id="t-modal-btn">Tushunarli</span></button>
+    <div class="card full reveal" id="download">
+      <div class="card-h"><i class="fa-solid fa-download"></i> <span id="t-dl-header"></span></div>
+      <div class="dl">
+        <a href="https://t.me/+_5tYgvH77_4yMTM6" target="_blank" rel="noopener" class="store s-tg">
+          <i class="fa-brands fa-telegram big"></i><b>Telegram</b>
+        </a>
+        <div class="store s-pl" onclick="showModal()">
+          <i class="fa-brands fa-google-play big"></i><b>Play Market</b>
+        </div>
+      </div>
     </div>
   </div>
 
   <footer>
-    <p>© 2026 My Age Calculator. Barcha huquqlar himoyalangan.</p>
+    <p>© 2026 My Age Calculator · <a href="https://t.me/+_5tYgvH77_4yMTM6" target="_blank" rel="noopener">Telegram</a> · <a href="https://instagram.com/javonex" target="_blank" rel="noopener">Instagram</a></p>
   </footer>
+</div>
 
-  <script>
-    const i18n = {
-      uz: {
-        badge: "Tezkor va Mukammal",
-        heroSub: "Tug'ilgan sanangizni kiriting va shaxsiy ma'lumotlaringizni oling.",
-        birthTitle: "Tug'ilgan kuningiz",
-        day: "Kun", month: "Oy", year: "Yil",
-        calc: "Hisoblash", reset: "Tozalash",
-        resHeader: "Sizning Natijalaringiz",
-        lblY: "Yil", lblM: "Oy", lblD: "Kun",
-        lblTotalDays: "Jami Kun", lblZodiac: "Burj", lblMuchal: "Muchal",
-        lblNextBday: "Keyingi Tug'ilgan Kunga Qoldi",
-        bannerTitle: "Smart Analitika va Interaktivlik",
-        bannerDesc: "Har bir bosilgan tugma animatsiya va to'liq ma'lumotlar bilan ta'minlangan.",
-        refHeader: "Burj va Muchal Ma'lumotnomasi",
-        tabZodiac: "Burjlar", tabMuchal: "Muchallar",
-        appsHeader: "Ilovalar va Botlar",
-        playDesc: "Rasmiy mobil ilovani yuklab olish uchun o'ting.",
-        tgTitle: "Telegram Bot", tgDesc: "Rasmiy Telegram botimizga o'tish.",
-        modalTitle: "Jarayon Davom Etmoqda 🚀",
-        modalText: "Play Market mobil ilovasi tayyorlanmoqda. U juda yaqin kunlarda rasman ishga tushadi!",
-        modalBtn: "Tushunarli",
-        daysLeftSuffix: "Kun qoldi",
-        months: ["Yanvar","Fevral","Mart","Aprel","May","Iyun","Iyul","Avgust","Sentyabr","Oktyabr","Noyabr","Dekabr"],
-        zodiacs: {
-          Capricorn: { name: "Tog'echkisi", date: "22 Dekabr — 19 Yanvar", text: "Mehnatkash, tartibli va maqsadga intiluvchan shaxslar." },
-          Aquarius: { name: "Qovg'a", date: "20 Yanvar — 18 Fevral", text: "Erkinlikni xush ko'ruvchi, ijodkor va mustaqil fikrlovchilar." },
-          Pisces: { name: "Baliq", date: "19 Fevral — 20 Mart", text: "Sezgir, mehribon va tasavvur olami boy insonlar." },
-          Aries: { name: "Qo'y", date: "21 Mart — 19 Aprel", text: "G'ayratli, jasur va yetakchilik qobiliyatiga ega." },
-          Taurus: { name: "Buzaq", date: "20 Aprel — 20 May", text: "Sabr-toqatli, barqaror va ishonchli shaxslar." },
-          Gemini: { name: "Egizaklar", date: "21 May — 20 Iyun", text: "Kirishimli, chiroqli muloqot qiluvchi va chaqqon." },
-          Cancer: { name: "Qisqichbaqa", date: "21 Iyun — 22 Iyul", text: "Oilaparvar, g'amxo'r va sezgir tabiatli." },
-          Leo: { name: "Arslon", date: "23 Iyul — 22 Avgust", text: "Saxovatli, irodali va yetakchi insonlar." },
-          Virgo: { name: "Parizod", date: "23 Avgust — 22 Sentyabr", text: "Tartibli, har bir detalga e'tibor beruvchi zukkolar." },
-          Libra: { name: "Tarozi", date: "23 Sentyabr — 22 Oktyabr", text: "Adolatli, tinchliksevar va xushmuomala." },
-          Scorpio: { name: "Chayon", date: "23 Oktyabr — 21 Noyabr", text: "Sirlilikka boy, kuchli irodali va sodiq." },
-          Sagittarius: { name: "O'qotar", date: "22 Noyabr — 21 Dekabr", text: "Sayohatni va quvnoq hayot tarzi xush ko'ruvchilar." }
-        },
-        muchals: [
-          { name: "Sichqon", years: "1984, 1996, 2008, 2020", text: "Zukko, chaqqon va har qanday vaziyatga moslasha oladigan." },
-          { name: "Buqa", years: "1985, 1997, 2009, 2021", text: "Mehnatkash, bosiq va o'z so'zida turadigan." },
-          { name: "Yo'lbars", years: "1986, 1998, 2010, 2022", text: "Jasoratli, tavakkalchi va g'ayratga boy." },
-          { name: "Quyon", years: "1987, 1999, 2011, 2023", text: "Muloyim, ehtiyotkor va tinchlikni qadrlaydigan." },
-          { name: "Baliq", years: "1988, 2000, 2012, 2024", text: "Omadli, qudratli va maqsadi sari dadil intiluvchi." },
-          { name: "Ilon", years: "1989, 2001, 2013, 2025", text: "Donishmand, chuqur fikrlaydigan va sirli." },
-          { name: "Ot", years: "1990, 2002, 2014, 2026", text: "Erkinlikni sevuvchi, mustaqil va harakatchan." },
-          { name: "Qo'y", years: "1991, 2003, 2015, 2027", text: "Ijodkor, ko'ngli yumshoq va samimiy." },
-          { name: "Maymun", years: "1992, 2004, 2016, 2028", text: "O'ta aqlli, hazilkash va muammolarni tez yechadigan." },
-          { name: "Xo'roz", years: "1993, 2005, 2017, 2029", text: "Tartibli, aniqlikni xush ko'ruvchi va to'g'riso'z." },
-          { name: "It", years: "1994, 2006, 2018, 2030", text: "Sadoqatli, adolatsevar va ishonchli do'st." },
-          { name: "To'ng'iz", years: "1995, 2007, 2019, 2031", text: "Saxovatli, ochiqko'ngil va quvnoq tabiatli." }
-        ]
-      },
-      ru: {
-        badge: "Быстрый и Точный",
-        heroSub: "Введите дату рождения и получите подробные персональные данные.",
-        birthTitle: "Дата рождения",
-        day: "День", month: "Месяц", year: "Год",
-        calc: "Рассчитать", reset: "Сбросить",
-        resHeader: "Ваши Результаты",
-        lblY: "Лет", lblM: "Месяцев", lblD: "Дней",
-        lblTotalDays: "Всего дней", lblZodiac: "Зодиак", lblMuchal: "Мучал",
-        lblNextBday: "До следующего дня рождения",
-        bannerTitle: "Умная Аналитика и Интерактивность",
-        bannerDesc: "Каждая кнопка сопровождается анимациями и точными данными.",
-        refHeader: "Справочник Зодиаков и Мучала",
-        tabZodiac: "Зодиаки", tabMuchal: "Мучал",
-        appsHeader: "Приложения и Боты",
-        playDesc: "Нажмите для скачивания официального приложения.",
-        tgTitle: "Telegram Бот", tgDesc: "Перейти в наш официальный Telegram бот.",
-        modalTitle: "Скоро в релизе 🚀",
-        modalText: "Приложение для Play Market находится в разработке и будет доступно в ближайшие дни!",
-        modalBtn: "Понятно",
-        daysLeftSuffix: "дней осталось",
-        months: ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"],
-        zodiacs: {
-          Capricorn: { name: "Козерог", date: "22 Декабря — 19 Яваря", text: "Трудолюбивые, дисциплинированные и целеустремленные." },
-          Aquarius: { name: "Водолей", date: "20 Января — 18 Февраля", text: "Свободолюбивые, творческие и независимые." },
-          Pisces: { name: "Рыбы", date: "19 Февраля — 20 Марта", text: "Чувствительные, добрые и с богатым воображением." },
-          Aries: { name: "Овен", date: "21 Марта — 19 Апреля", text: "Энергичные, смелые и обладающие лидерскими качествами." },
-          Taurus: { name: "Телец", date: "20 Апреля — 20 Мая", text: "Терпеливые, надежные и стабильные личности." },
-          Gemini: { name: "Близнецы", date: "21 Мая — 20 Июня", text: "Общительные, остроумные и любознательные." },
-          Cancer: { name: "Рак", date: "21 Июня — 22 Июля", text: "Заботливые, семейные и эмоциональные." },
-          Leo: { name: "Лев", date: "23 Июля — 22 Августа", text: "Щедрые, сильные духом и харизматичные." },
-          Virgo: { name: "Дева", date: "23 Августа — 22 Сентября", text: "Аккуратные, внимательные к деталям аналитики." },
-          Libra: { name: "Весы", date: "23 Сентября — 22 Октября", text: "Справедливые, миролюбивые и обаятельные." },
-          Scorpio: { name: "Скорпион", date: "23 Октября — 21 Ноября", text: "Загадочные, обладающие сильной волей и верные." },
-          Sagittarius: { name: "Стрелец", date: "22 Ноября — 21 Декабря", text: "Оптимистичные, ценящие путешествия и свободу." }
-        },
-        muchals: [
-          { name: "Крыса", years: "1984, 1996, 2008, 2020", text: "Умные, находчивые и быстро адаптирующиеся." },
-          { name: "Бык", years: "1985, 1997, 2009, 2021", text: "Трудолюбивые, спокойные и верные своему слову." },
-          { name: "Тигр", years: "1986, 1998, 2010, 2022", text: "Смелые, рисковые и полные энергии." },
-          { name: "Кролик", years: "1987, 1999, 2011, 2023", text: "Мягкие, осторожные и ценящие мир." },
-          { name: "Рыба (Дракон)", years: "1988, 2000, 2012, 2024", text: "Успешные, могущественные и уверенные." },
-          { name: "Змея", years: "1989, 2001, 2013, 2025", text: "Мудрые, глубоко мыслящие и загадочные." },
-          { name: "Лошадь", years: "1990, 2002, 2014, 2026", text: "Свободолюбивые, независимые и активные." },
-          { name: "Овца", years: "1991, 2003, 2015, 2027", text: "Творческие, добрые и искренние." },
-          { name: "Обезьяна", years: "1992, 2004, 2016, 2028", text: "Очень умные, с хорошим чувством юмора." },
-          { name: "Петух", years: "1993, 2005, 2017, 2029", text: "Пунктуальные, прямые и организованные." },
-          { name: "Собака", years: "1994, 2006, 2018, 2030", text: "Преданные, честные и надежные друзья." },
-          { name: "Свинья", years: "1995, 2007, 2019, 2031", text: "Щедрые, жизнерадостные и открытые." }
-        ]
-      },
-      en: {
-        badge: "Fast & Accurate",
-        heroSub: "Enter your birth date to calculate your exact age and horoscope.",
-        birthTitle: "Your Date of Birth",
-        day: "Day", month: "Month", year: "Year",
-        calc: "Calculate", reset: "Clear",
-        resHeader: "Your Results",
-        lblY: "Years", lblM: "Months", lblD: "Days",
-        lblTotalDays: "Total Days", lblZodiac: "Zodiac", lblMuchal: "Zodiac Animal",
-        lblNextBday: "Next Birthday In",
-        bannerTitle: "Smart Analytics & Interactivity",
-        bannerDesc: "Every button interaction is backed by dynamic visual animations.",
-        refHeader: "Zodiac & Animal Sign Reference",
-        tabZodiac: "Zodiacs", tabMuchal: "Eastern Signs",
-        appsHeader: "Apps & Bots",
-        playDesc: "Click to download the official Android mobile app.",
-        tgTitle: "Telegram Bot", tgDesc: "Open our official Telegram assistant bot.",
-        modalTitle: "Coming Soon 🚀",
-        modalText: "The Play Market Android application is under development and will launch very soon!",
-        modalBtn: "Got it",
-        daysLeftSuffix: "days left",
-        months: ["January","February","March","April","May","June","July","August","September","October","November","December"],
-        zodiacs: {
-          Capricorn: { name: "Capricorn", date: "Dec 22 — Jan 19", text: "Hardworking, disciplined, and goal-oriented." },
-          Aquarius: { name: "Aquarius", date: "Jan 20 — Feb 18", text: "Freedom-loving, creative, and independent." },
-          Pisces: { name: "Pisces", date: "Feb 19 — Mar 20", text: "Sensitive, kind, and imaginative." },
-          Aries: { name: "Aries", date: "Mar 21 — Apr 19", text: "Energetic, courageous, and natural leader." },
-          Taurus: { name: "Taurus", date: "Apr 20 — May 20", text: "Patient, reliable, and grounded." },
-          Gemini: { name: "Gemini", date: "May 21 — Jun 20", text: "Witty, communicative, and adaptable." },
-          Cancer: { name: "Cancer", date: "Jun 21 — Jul 22", text: "Caring, protective, and emotional." },
-          Leo: { name: "Leo", date: "Jul 23 — Aug 22", text: "Generous, strong-willed, and charismatic." },
-          Virgo: { name: "Virgo", date: "Aug 23 — Sep 22", text: "Detail-oriented, analytical, and precise." },
-          Libra: { name: "Libra", date: "Sep 23 — Oct 22", text: "Fair-minded, peaceful, and charming." },
-          Scorpio: { name: "Scorpio", date: "Oct 23 — Nov 21", text: "Passionate, resourceful, and loyal." },
-          Sagittarius: { name: "Sagittarius", date: "Nov 22 — Dec 21", text: "Optimistic, adventurous, and freedom-loving." }
-        },
-        muchals: [
-          { name: "Rat", years: "1984, 1996, 2008, 2020", text: "Smart, resourceful, and versatile." },
-          { name: "Ox", years: "1985, 1997, 2009, 2021", text: "Diligent, dependable, and strong." },
-          { name: "Tiger", years: "1986, 1998, 2010, 2022", text: "Brave, competitive, and confident." },
-          { name: "Rabbit", years: "1987, 1999, 2011, 2023", text: "Quiet, elegant, and responsible." },
-          { name: "Fish / Dragon", years: "1988, 2000, 2012, 2024", text: "Confident, intelligent, and ambitious." },
-          { name: "Snake", years: "1989, 2001, 2013, 2025", text: "Enigmatic, intelligent, and wise." },
-          { name: "Horse", years: "1990, 2002, 2014, 2026", text: "Animated, active, and energetic." },
-          { name: "Goat", years: "1991, 2003, 2015, 2027", text: "Calm, gentle, and sympathetic." },
-          { name: "Monkey", years: "1992, 2004, 2016, 2028", text: "Sharp, smart, and curious." },
-          { name: "Rooster", years: "1993, 2005, 2017, 2029", text: "Observant, hardworking, and courageous." },
-          { name: "Dog", years: "1994, 2006, 2018, 2030", text: "Lovely, honest, and prudent." },
-          { name: "Pig", years: "1995, 2007, 2019, 2031", text: "Compassionate, generous, and diligent." }
-        ]
-      }
-    };
+<div class="toast" id="toast"></div>
+<div id="imgModal" class="modal-bg" onclick="if(event.target===this)this.classList.remove('active')">
+  <div class="modal" style="max-height:92vh;overflow:auto"><img id="imgPrev" alt="My Age Calculator" style="width:100%;border-radius:14px"><div class="mx" id="t-img-hint" style="margin:12px 0 0"></div></div>
+</div>
+<div id="customModal" class="modal-bg" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="mi"><i class="fa-solid fa-rocket"></i></div>
+    <div class="mt" id="t-modal-title"></div><div class="mx" id="t-modal-text"></div>
+    <button class="mb" onclick="closeModalDirect()" id="t-modal-btn"></button>
+  </div>
+</div>
 
-    let currentLang = 'uz';
-    let activeCat = 'zodiac';
-    let lastCalculatedDate = null;
+<script>
+const i18n={
+uz:{badge:"Tezkor va Mukammal",heroSub:"Tug'ilgan sanangizni kiriting va shaxsiy ma'lumotlaringizni oling.",birthTitle:"Tug'ilgan kuningiz",day:"Kun",month:"Oy",year:"Yil",calc:"Hisoblash",reset:"Tozalash",resHeader:"Sizning Natijalaringiz",empty:"Sanani kiriting va «Hisoblash» tugmasini bosing.",lblY:"Yil",lblM:"Oy",lblD:"Kun",lblTotalDays:"Jami Kun",lblZodiac:"Burj",lblMuchal:"Muchal",lblNextBday:"Keyingi Tug'ilgan Kunga Qoldi",lh:"Soat",lmin:"Daqiqa",ls:"Soniya",lw:"Hafta",bannerTitle:"Smart Analitika va Interaktivlik",bannerDesc:"Har bir bosilgan tugma animatsiya va to'liq ma'lumotlar bilan ta'minlangan.",refHeader:"Burj va Muchal Ma'lumotnomasi",tabZodiac:"Burjlar",tabMuchal:"Muchallar",appsHeader:"Bizni kuzating",tgTitle:"Telegram kanal",tgDesc:"Yangiliklar uchun kanalimizga qo'shiling.",playDesc:"Rasmiy mobil ilova tez orada.",modalTitle:"Jarayon Davom Etmoqda 🚀",modalText:"Play Market mobil ilovasi tayyorlanmoqda. U juda yaqin kunlarda rasman ishga tushadi!",modalBtn:"Tushunarli",suffix:"kun qoldi",today:"Bugun tug'ilgan kuningiz! 🎉",errDate:"Bunday sana mavjud emas.",errFuture:"Sana kelajakda bo'lishi mumkin emas.",
+months:["Yanvar","Fevral","Mart","Aprel","May","Iyun","Iyul","Avgust","Sentyabr","Oktyabr","Noyabr","Dekabr"],
+zodiacs:{Capricorn:["Tog'echkisi","22 Dekabr — 19 Yanvar","Mehnatkash, tartibli va maqsadga intiluvchan shaxslar."],Aquarius:["Qovg'a","20 Yanvar — 18 Fevral","Erkinlikni xush ko'ruvchi, ijodkor va mustaqil fikrlovchilar."],Pisces:["Baliq","19 Fevral — 20 Mart","Sezgir, mehribon va tasavvur olami boy insonlar."],Aries:["Qo'y","21 Mart — 19 Aprel","G'ayratli, jasur va yetakchilik qobiliyatiga ega."],Taurus:["Buzaq","20 Aprel — 20 May","Sabr-toqatli, barqaror va ishonchli shaxslar."],Gemini:["Egizaklar","21 May — 20 Iyun","Kirishimli, chiroyli muloqot qiluvchi va chaqqon."],Cancer:["Qisqichbaqa","21 Iyun — 22 Iyul","Oilaparvar, g'amxo'r va sezgir tabiatli."],Leo:["Arslon","23 Iyul — 22 Avgust","Saxovatli, irodali va yetakchi insonlar."],Virgo:["Parizod","23 Avgust — 22 Sentyabr","Tartibli, har bir detalga e'tibor beruvchi zukkolar."],Libra:["Tarozi","23 Sentyabr — 22 Oktyabr","Adolatli, tinchliksevar va xushmuomala."],Scorpio:["Chayon","23 Oktyabr — 21 Noyabr","Sirlilikka boy, kuchli irodali va sodiq."],Sagittarius:["O'qotar","22 Noyabr — 21 Dekabr","Sayohat va quvnoq hayot tarzini xush ko'ruvchilar."]},
+muchals:[["Sichqon","Zukko, chaqqon va har qanday vaziyatga moslasha oladigan."],["Buqa","Mehnatkash, bosiq va o'z so'zida turadigan."],["Yo'lbars","Jasoratli, tavakkalchi va g'ayratga boy."],["Quyon","Muloyim, ehtiyotkor va tinchlikni qadrlaydigan."],["Baliq","Omadli, qudratli va maqsadi sari dadil intiluvchi."],["Ilon","Donishmand, chuqur fikrlaydigan va sirli."],["Ot","Erkinlikni sevuvchi, mustaqil va harakatchan."],["Qo'y","Ijodkor, ko'ngli yumshoq va samimiy."],["Maymun","O'ta aqlli, hazilkash va muammolarni tez yechadigan."],["Xo'roz","Tartibli, aniqlikni xush ko'ruvchi va to'g'riso'z."],["It","Sadoqatli, adolatsevar va ishonchli do'st."],["To'ng'iz","Saxovatli, ochiqko'ngil va quvnoq tabiatli."]]},
+ru:{badge:"Быстрый и Точный",heroSub:"Введите дату рождения и получите подробные персональные данные.",birthTitle:"Дата рождения",day:"День",month:"Месяц",year:"Год",calc:"Рассчитать",reset:"Сбросить",resHeader:"Ваши Результаты",empty:"Введите дату и нажмите «Рассчитать».",lblY:"Лет",lblM:"Месяцев",lblD:"Дней",lblTotalDays:"Всего дней",lblZodiac:"Зодиак",lblMuchal:"Мучал",lblNextBday:"До следующего дня рождения",lh:"Часов",lmin:"Минут",ls:"Секунд",lw:"Недель",bannerTitle:"Умная Аналитика и Интерактивность",bannerDesc:"Каждая кнопка сопровождается анимациями и точными данными.",refHeader:"Справочник Зодиаков и Мучала",tabZodiac:"Зодиаки",tabMuchal:"Мучал",appsHeader:"Подписывайтесь на нас",tgTitle:"Telegram канал",tgDesc:"Вступайте в наш канал, чтобы быть в курсе новостей.",playDesc:"Официальное приложение скоро.",modalTitle:"Скоро в релизе 🚀",modalText:"Приложение для Play Market находится в разработке и будет доступно в ближайшие дни!",modalBtn:"Понятно",suffix:"дней осталось",today:"Сегодня ваш день рождения! 🎉",errDate:"Такой даты не существует.",errFuture:"Дата не может быть в будущем.",
+months:["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"],
+zodiacs:{Capricorn:["Козерог","22 Декабря — 19 Января","Трудолюбивые, дисциплинированные и целеустремленные."],Aquarius:["Водолей","20 Января — 18 Февраля","Свободолюбивые, творческие и независимые."],Pisces:["Рыбы","19 Февраля — 20 Марта","Чувствительные, добрые и с богатым воображением."],Aries:["Овен","21 Марта — 19 Апреля","Энергичные, смелые и обладающие лидерскими качествами."],Taurus:["Телец","20 Апреля — 20 Мая","Терпеливые, надежные и стабильные личности."],Gemini:["Близнецы","21 Мая — 20 Июня","Общительные, остроумные и любознательные."],Cancer:["Рак","21 Июня — 22 Июля","Заботливые, семейные и эмоциональные."],Leo:["Лев","23 Июля — 22 Августа","Щедрые, сильные духом и харизматичные."],Virgo:["Дева","23 Августа — 22 Сентября","Аккуратные, внимательные к деталям аналитики."],Libra:["Весы","23 Сентября — 22 Октября","Справедливые, миролюбивые и обаятельные."],Scorpio:["Скорпион","23 Октября — 21 Ноября","Загадочные, обладающие сильной волей и верные."],Sagittarius:["Стрелец","22 Ноября — 21 Декабря","Оптимистичные, ценящие путешествия и свободу."]},
+muchals:[["Крыса","Умные, находчивые и быстро адаптирующиеся."],["Бык","Трудолюбивые, спокойные и верные своему слову."],["Тигр","Смелые, рисковые и полные энергии."],["Кролик","Мягкие, осторожные и ценящие мир."],["Дракон","Успешные, могущественные и уверенные."],["Змея","Мудрые, глубоко мыслящие и загадочные."],["Лошадь","Свободолюбивые, независимые и активные."],["Овца","Творческие, добрые и искренние."],["Обезьяна","Очень умные, с хорошим чувством юмора."],["Петух","Пунктуальные, прямые и организованные."],["Собака","Преданные, честные и надежные друзья."],["Свинья","Щедрые, жизнерадостные и открытые."]]},
+en:{badge:"Fast & Accurate",heroSub:"Enter your birth date to calculate your exact age and horoscope.",birthTitle:"Your Date of Birth",day:"Day",month:"Month",year:"Year",calc:"Calculate",reset:"Clear",resHeader:"Your Results",empty:"Enter your date and press “Calculate”.",lblY:"Years",lblM:"Months",lblD:"Days",lblTotalDays:"Total Days",lblZodiac:"Zodiac",lblMuchal:"Zodiac Animal",lblNextBday:"Next Birthday In",lh:"Hours",lmin:"Minutes",ls:"Seconds",lw:"Weeks",bannerTitle:"Smart Analytics & Interactivity",bannerDesc:"Every button interaction is backed by dynamic visual animations.",refHeader:"Zodiac & Animal Sign Reference",tabZodiac:"Zodiacs",tabMuchal:"Eastern Signs",appsHeader:"Follow us",tgTitle:"Telegram Channel",tgDesc:"Join our channel for the latest updates.",playDesc:"Official Android app coming soon.",modalTitle:"Coming Soon 🚀",modalText:"The Play Market Android application is under development and will launch very soon!",modalBtn:"Got it",suffix:"days left",today:"It's your birthday today! 🎉",errDate:"This date does not exist.",errFuture:"The date can't be in the future.",
+months:["January","February","March","April","May","June","July","August","September","October","November","December"],
+zodiacs:{Capricorn:["Capricorn","Dec 22 — Jan 19","Hardworking, disciplined, and goal-oriented."],Aquarius:["Aquarius","Jan 20 — Feb 18","Freedom-loving, creative, and independent."],Pisces:["Pisces","Feb 19 — Mar 20","Sensitive, kind, and imaginative."],Aries:["Aries","Mar 21 — Apr 19","Energetic, courageous, and a natural leader."],Taurus:["Taurus","Apr 20 — May 20","Patient, reliable, and grounded."],Gemini:["Gemini","May 21 — Jun 20","Witty, communicative, and adaptable."],Cancer:["Cancer","Jun 21 — Jul 22","Caring, protective, and emotional."],Leo:["Leo","Jul 23 — Aug 22","Generous, strong-willed, and charismatic."],Virgo:["Virgo","Aug 23 — Sep 22","Detail-oriented, analytical, and precise."],Libra:["Libra","Sep 23 — Oct 22","Fair-minded, peaceful, and charming."],Scorpio:["Scorpio","Oct 23 — Nov 21","Passionate, resourceful, and loyal."],Sagittarius:["Sagittarius","Nov 22 — Dec 21","Optimistic, adventurous, and freedom-loving."]},
+muchals:[["Rat","Smart, resourceful, and versatile."],["Ox","Diligent, dependable, and strong."],["Tiger","Brave, competitive, and confident."],["Rabbit","Quiet, elegant, and responsible."],["Dragon","Confident, intelligent, and ambitious."],["Snake","Enigmatic, intelligent, and wise."],["Horse","Animated, active, and energetic."],["Goat","Calm, gentle, and sympathetic."],["Monkey","Sharp, smart, and curious."],["Rooster","Observant, hardworking, and courageous."],["Dog","Lovely, honest, and prudent."],["Pig","Compassionate, generous, and diligent."]]}
+};
 
-    function switchLanguage(lang) {
-      currentLang = lang;
-      const dict = i18n[lang];
+const X={
+uz:{prog:"Keyingi tug'ilgan kunga yo'l",wd:"Tug'ilgan kun",hb:"Yurak urishi ≈",mln:"mln",share:"Ulashish",copy:"Nusxalash",copied:"Nusxalandi ✓",saveImg:"Yuklab olish",saved:"Rasm saqlandi ✓",making:"Rasm tayyorlanmoqda…",hint:"Rasmni bosib turing va «Saqlash»ni tanlang.",adCta:"Siz ham yoshingizni biling",adTitle:"Siz necha kun yashadingiz?",adSub:"Sanangizni kiriting: kun, soat, soniya, burj va muchalingiz bir zumda chiqadi.",adUnit:"kun",wdays:["Yakshanba","Dushanba","Seshanba","Chorshanba","Payshanba","Juma","Shanba"],cmpHeader:"Boshqa sanadagi yoshingiz",cmpNeed:"Avval tug'ilgan sanangizni hisoblang.",cmpBefore:"Tanlangan sana tug'ilgan kuningizdan oldin.",cmpPast:"O'sha kuni yoshingiz",cmpFuture:"O'sha kuni yoshingiz bo'ladi",socHeader:"Ijtimoiy tarmoqlar",tgDesc:"Yangiliklar va e'lonlar kanalimizda.",dlHeader:"Ilovani yuklab olish",dlSub:"Ilovani Telegram kanalimizdan yoki Play Market orqali oling.",dlTg:"Kanaldan yuklab olish",dlPl:"Tez orada · Android uchun"},
+ru:{prog:"Путь до дня рождения",wd:"День недели",hb:"Ударов сердца ≈",mln:"млн",share:"Поделиться",copy:"Копировать",copied:"Скопировано ✓",saveImg:"Скачать",saved:"Картинка сохранена ✓",making:"Готовим картинку…",hint:"Нажмите и удерживайте картинку, затем «Сохранить».",adCta:"Узнайте свой возраст",adTitle:"Сколько дней вы живёте?",adSub:"Введите дату: дни, часы, секунды, зодиак и мучал появятся мгновенно.",adUnit:"дней",wdays:["Воскресенье","Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"],cmpHeader:"Ваш возраст на другую дату",cmpNeed:"Сначала рассчитайте дату рождения.",cmpBefore:"Выбранная дата раньше вашего рождения.",cmpPast:"Ваш возраст в тот день",cmpFuture:"Ваш возраст будет",socHeader:"Социальные сети",tgDesc:"Новости и анонсы в нашем канале.",dlHeader:"Скачать приложение",dlSub:"Получите приложение в Telegram-канале или через Play Market.",dlTg:"Скачать из канала",dlPl:"Скоро · для Android"},
+en:{prog:"Progress to next birthday",wd:"Born on",hb:"Heartbeats ≈",mln:"M",share:"Share",copy:"Copy",copied:"Copied ✓",saveImg:"Save image",saved:"Image saved ✓",making:"Creating image…",hint:"Press and hold the image, then choose “Save”.",adCta:"Find out your age too",adTitle:"How many days have you lived?",adSub:"Enter your date: days, hours, seconds, zodiac and animal sign appear instantly.",adUnit:"days",wdays:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],cmpHeader:"Your age on another date",cmpNeed:"Calculate your birth date first.",cmpBefore:"The chosen date is before your birth.",cmpPast:"Your age on that day",cmpFuture:"Your age will be",socHeader:"Social networks",tgDesc:"News and updates in our channel.",dlHeader:"Download the app",dlSub:"Get the app from our Telegram channel or on Play Market.",dlTg:"Download from channel",dlPl:"Coming soon · for Android"}
+};
+for(const l in X)Object.assign(i18n[l],X[l]);
+const $=id=>document.getElementById(id);
+const ZK=["Capricorn","Aquarius","Pisces","Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn"];
+const ZD=[20,19,21,20,21,21,23,23,23,23,22,22];
+let lang='uz',cat='zodiac',last=null,timer=null,birthTs=0,mine={z:-1,m:-1},shareTxt='',snap=null;
+const SITE=location.protocol.indexOf('http')===0?location.origin:'';
+const T={badge:'t-badge',heroSub:'t-hero-sub',birthTitle:'t-birth-title',day:'t-lbl-day',month:'t-lbl-month',year:'t-lbl-year',calc:'t-btn-calc',reset:'t-btn-reset',resHeader:'t-res-header',empty:'t-empty',lblY:'t-lbl-y',lblM:'t-lbl-m',lblD:'t-lbl-d',lblTotalDays:'t-lbl-totaldays',lblZodiac:'t-lbl-zodiac',lblMuchal:'t-lbl-muchal',lblNextBday:'t-lbl-nextbday',lh:'t-lh',lmin:'t-lmin',ls:'t-ls',lw:'t-lw',bannerTitle:'t-banner-title',bannerDesc:'t-banner-desc',refHeader:'t-ref-header',tabZodiac:'t-tab-zodiac',tabMuchal:'t-tab-muchal',prog:'t-prog',wd:'t-wd',hb:'t-hb',share:'t-share',saveImg:'t-save',adTitle:'t-ad-title',adSub:'t-ad-sub',adUnit:'t-ad-unit',hint:'t-img-hint',socHeader:'t-soc-header',dlHeader:'t-dl-header',modalTitle:'t-modal-title',modalText:'t-modal-text',modalBtn:'t-modal-btn'};
 
-      document.getElementById('t-badge').textContent = dict.badge;
-      document.getElementById('t-hero-sub').textContent = dict.heroSub;
-      document.getElementById('t-birth-title').textContent = dict.birthTitle;
-      document.getElementById('t-lbl-day').textContent = dict.day;
-      document.getElementById('t-lbl-month').textContent = dict.month;
-      document.getElementById('t-lbl-year').textContent = dict.year;
-      document.getElementById('t-btn-calc').textContent = dict.calc;
-      document.getElementById('t-btn-reset').textContent = dict.reset;
-      document.getElementById('t-res-header').textContent = dict.resHeader;
-      document.getElementById('t-lbl-y').textContent = dict.lblY;
-      document.getElementById('t-lbl-m').textContent = dict.lblM;
-      document.getElementById('t-lbl-d').textContent = dict.lblD;
-      document.getElementById('t-lbl-totaldays').textContent = dict.lblTotalDays;
-      document.getElementById('t-lbl-zodiac').textContent = dict.lblZodiac;
-      document.getElementById('t-lbl-muchal').textContent = dict.lblMuchal;
-      document.getElementById('t-lbl-nextbday').textContent = dict.lblNextBday;
-      document.getElementById('t-banner-title').textContent = dict.bannerTitle;
-      document.getElementById('t-banner-desc').textContent = dict.bannerDesc;
-      document.getElementById('t-ref-header').textContent = dict.refHeader;
-      document.getElementById('t-tab-zodiac').textContent = dict.tabZodiac;
-      document.getElementById('t-tab-muchal').textContent = dict.tabMuchal;
-      document.getElementById('t-apps-header').textContent = dict.appsHeader;
-      document.getElementById('t-play-desc').textContent = dict.playDesc;
-      document.getElementById('t-tg-title').textContent = dict.tgTitle;
-      document.getElementById('t-tg-desc').textContent = dict.tgDesc;
-      document.getElementById('t-modal-title').textContent = dict.modalTitle;
-      document.getElementById('t-modal-text').textContent = dict.modalText;
-      document.getElementById('t-modal-btn').textContent = dict.modalBtn;
+function switchLanguage(l){
+  lang=l;const d=i18n[l];document.documentElement.lang=l;try{localStorage.setItem('age_lang',l)}catch(_){}
+  for(const k in T)$(T[k]).textContent=d[k];
+  populateMonths();renderGrid();
+  if(last)reCalculate(false);
+}
+function populateMonths(){
+  const s=$('month'),cur=s.value||1;s.innerHTML='';
+  i18n[lang].months.forEach((m,i)=>{const o=document.createElement('option');o.value=i+1;o.textContent=m;if(i+1==cur)o.selected=true;s.appendChild(o)});
+}
+function switchCategory(c){
+  cat=c;$('tabZodiac').classList.toggle('active',c==='zodiac');$('tabMuchal').classList.toggle('active',c==='muchal');renderGrid();
+}
+function renderGrid(){
+  const g=$('gridContainer'),d=i18n[lang];g.innerHTML='';$('detailView').classList.add('hidden');
+  const items=cat==='zodiac'?Object.values(d.zodiacs):d.muchals.map((m,i)=>[m[0],[0,1,2,3].map(n=>1984+i+n*12).join(', '),m[1]]);
+  items.forEach((it,i)=>{
+    const b=document.createElement('button');b.className='zb';b.textContent=it[0];b.style.animationDelay=(i*40)+'ms';if((cat==='zodiac'?mine.z:mine.m)===i)b.classList.add('mine');
+    b.onclick=()=>{document.querySelectorAll('.zb').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+      $('detTitle').textContent=it[0];$('detSub').textContent=it[1];$('detText').textContent=it[2];
+      const v=$('detailView');v.classList.remove('hidden');v.style.animation='none';v.offsetHeight;v.style.animation=''};
+    g.appendChild(b);
+  });
+}
+function countUp(el,to,dur=900){
+  const t0=performance.now();
+  (function f(t){const p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(to*e).toLocaleString();if(p<1)requestAnimationFrame(f)})(t0);
+}
+function calculateAge(e){
+  e.preventDefault();
+  const d=+$('day').value,m=+$('month').value,y=+$('year').value,now=new Date(),err=$('err'),dict=i18n[lang];
+  err.textContent='';
+  const b=new Date(y,m-1,d);
+  if(b.getFullYear()!==y||b.getMonth()!==m-1||b.getDate()!==d){err.textContent=dict.errDate;return}
+  if(b>now){err.textContent=dict.errFuture;return}
+  last={d,m,y};try{localStorage.setItem('age_dob',JSON.stringify(last))}catch(_){}
+  reCalculate(true);
+  if(window.innerWidth<860)$('resCard').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function reCalculate(animate){
+  const {d,m,y}=last,dict=i18n[lang],now=new Date(),birth=new Date(y,m-1,d);
+  let years=now.getFullYear()-y,months=now.getMonth()-(m-1),days=now.getDate()-d;
+  if(days<0){months--;days+=new Date(now.getFullYear(),now.getMonth(),0).getDate()}
+  if(months<0){years--;months+=12}
+  const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const totalDays=Math.round((today-birth)/864e5);
+  let nb=new Date(now.getFullYear(),m-1,d);
+  if(nb<today)nb=new Date(now.getFullYear()+1,m-1,d);
+  const left=Math.round((nb-today)/864e5);
+  $('empty').classList.add('hidden');$('results').classList.remove('hidden');
+  const g=$('resGrid');
+  if(animate){g.classList.remove('show');g.offsetHeight;g.classList.add('show');
+    countUp($('resY'),years);countUp($('resM'),months);countUp($('resD'),days);countUp($('resTotalDays'),totalDays,1200);
+  }else{g.classList.add('show');$('resY').textContent=years;$('resM').textContent=months;$('resD').textContent=days;$('resTotalDays').textContent=totalDays.toLocaleString()}
+  const zk=d<ZD[m-1]?ZK[m-1]:ZK[m];
+  $('resZodiac').textContent=dict.zodiacs[zk][0];
+  $('resMuchal').textContent=dict.muchals[((y-4)%12+12)%12][0];
+  $('resNextBday').textContent=left===0?dict.today:`${left} ${dict.lblD}`;
+  if(animate&&left===0)confetti();
+  mine={z:ZK.indexOf(zk),m:((y-4)%12+12)%12};snap={years,months,days,totalDays,left,zk,mi:mine.m};renderGrid();
+  $('resWd').textContent=dict.wdays[birth.getDay()];
+  $('resHb').textContent='~'+Math.round(totalDays*1440*72/1e6).toLocaleString()+' '+dict.mln;
+  const prev=new Date(nb.getFullYear()-1,m-1,d),pct=left===0?100:Math.max(0,Math.min(100,Math.round((today-prev)/(nb-prev)*100)));
+  $('progPct').textContent=left===0?'🎉':`${left} ${dict.suffix}`;$('progBar').style.width='0';setTimeout(()=>$('progBar').style.width=pct+'%',60);
+  shareTxt=`🎂 ${years} ${dict.lblY}, ${months} ${dict.lblM}, ${days} ${dict.lblD}\n${dict.lblZodiac}: ${dict.zodiacs[zk][0]} · ${dict.lblMuchal}: ${dict.muchals[mine.m][0]}\nMy Age Calculator${SITE?' · '+SITE:''}`;
+  birthTs=birth.getTime();tick();clearInterval(timer);timer=setInterval(tick,1000);
+}
+function tick(){
+  const s=Math.floor((Date.now()-birthTs)/1000);
+  $('lvH').textContent=Math.floor(s/3600).toLocaleString();
+  $('lvMin').textContent=Math.floor(s/60).toLocaleString();
+  $('lvS').textContent=s.toLocaleString();
+  $('lvW').textContent=Math.floor(s/604800).toLocaleString();
+}
+function confetti(){
+  const c=['#6366f1','#38bdf8','#4ade80','#f472b6','#facc15'];
+  for(let i=0;i<60;i++){const e=document.createElement('i');e.className='confetti';
+    e.style.left=Math.random()*100+'vw';e.style.background=c[i%5];
+    e.style.animationDuration=(2+Math.random()*2)+'s';e.style.animationDelay=Math.random()*.6+'s';
+    document.body.appendChild(e);setTimeout(()=>e.remove(),5000)}
+}
+function clearAll(){
+  $('day').value='';$('year').value='';$('err').textContent='';
+  $('results').classList.add('hidden');$('empty').classList.remove('hidden');
+  mine={z:-1,m:-1};renderGrid();try{localStorage.removeItem('age_dob')}catch(_){}
+  last=null;snap=null;clearInterval(timer);
+}
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),1800)}
+function copyResult(){
+  const done=()=>toast(i18n[lang].copied);
+  if(navigator.clipboard)navigator.clipboard.writeText(shareTxt).then(done,done);
+  else{const a=document.createElement('textarea');a.value=shareTxt;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();done()}
+}
+async function makeCard(){
+  const F='"Plus Jakarta Sans",sans-serif';
+  try{await Promise.all([document.fonts.load('800 60px '+F),document.fonts.load('600 30px '+F)])}catch(_){}
+  const W=1080,H=1920,cv=document.createElement('canvas');cv.width=W;cv.height=H;
+  const x=cv.getContext('2d'),d=i18n[lang],s=snap;
+  const rr=(a,b,w,h,q)=>{x.beginPath();x.moveTo(a+q,b);x.arcTo(a+w,b,a+w,b+h,q);x.arcTo(a+w,b+h,a,b+h,q);x.arcTo(a,b+h,a,b,q);x.arcTo(a,b,a+w,b,q);x.closePath()};
+  const t=(txt,a,b,z,w,col,mw)=>{x.textAlign='center';x.fillStyle=col;for(;;){x.font=`${w} ${z}px ${F}`;if(!mw||x.measureText(txt).width<=mw||z<16)break;z-=2}x.fillText(txt,a,b)};
+  let g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,'#0b0f19');g.addColorStop(.55,'#1e1b4b');g.addColorStop(1,'#0c4a6e');x.fillStyle=g;x.fillRect(0,0,W,H);
+  [[120,260,520,'99,102,241'],[980,1550,560,'14,165,233'],[900,760,380,'219,39,119']].forEach(([a,b,q,k])=>{g=x.createRadialGradient(a,b,0,a,b,q);g.addColorStop(0,`rgba(${k},.45)`);g.addColorStop(1,`rgba(${k},0)`);x.fillStyle=g;x.fillRect(0,0,W,H)});
+  g=x.createLinearGradient(480,150,600,270);g.addColorStop(0,'#6366f1');g.addColorStop(1,'#3b82f6');x.fillStyle=g;rr(480,150,120,120,34);x.fill();
+  x.font='64px sans-serif';x.fillStyle='#fff';x.textAlign='center';x.fillText('⏳',540,236);
+  t('My Age Calculator',540,360,76,800,'#fff',900);
+  t(d.badge,540,420,34,600,'#94a3b8',900);
+  g=x.createLinearGradient(0,560,0,820);g.addColorStop(0,'#fff');g.addColorStop(1,'#a5b4fc');
+  t(String(s.years),540,800,360,800,g,900);
+  t(d.lblY,540,885,52,700,'#38bdf8');
+  t(`${s.months} ${d.lblM}  ·  ${s.days} ${d.lblD}`,540,975,52,700,'#fff',940);
+  [[d.lblTotalDays,s.totalDays.toLocaleString(),'#fff'],[d.lblNextBday,s.left?`${s.left} ${d.lblD}`:'🎉','#4ade80'],[d.lblZodiac,d.zodiacs[s.zk][0],'#38bdf8'],[d.lblMuchal,d.muchals[s.mi][0],'#818cf8']].forEach((k,i)=>{
+    const a=75+(i%2)*480,b=1060+Math.floor(i/2)*190;
+    x.fillStyle='rgba(15,23,42,.72)';rr(a,b,450,160,32);x.fill();x.strokeStyle='rgba(255,255,255,.14)';x.lineWidth=2;x.stroke();
+    t(k[0],a+225,b+56,28,600,'#94a3b8',400);t(k[1],a+225,b+120,56,800,k[2],400)});
+  t(d.adCta,540,1525,38,600,'#cbd5e1',900);
+  g=x.createLinearGradient(140,0,940,0);g.addColorStop(0,'#6366f1');g.addColorStop(1,'#0ea5e9');x.fillStyle=g;rr(140,1565,800,130,65);x.fill();
+  t('My Age Calculator',540,1648,62,800,'#fff',740);
+  t('@javonex'+(SITE?'  ·  '+SITE.replace(/^https?:\/\//,''):''),540,1770,34,600,'#94a3b8',900);
+  return new Promise(res=>cv.toBlob(res,'image/png'));
+}
+function saveImage(blob){
+  const d=i18n[lang],name='my-age-calculator.png';
+  if(window.Android&&window.Android.saveImage){const fr=new FileReader();fr.onload=()=>{window.Android.saveImage(fr.result.split(',')[1],name);toast(d.saved)};fr.readAsDataURL(blob);return}
+  const u=URL.createObjectURL(blob);
+  if(/; wv\)|WebView/i.test(navigator.userAgent)){$('imgPrev').src=u;$('imgModal').classList.add('active');return}
+  const a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(u),4000);toast(d.saved);
+}
+async function downloadResult(){
+  if(!snap)return;toast(i18n[lang].making);saveImage(await makeCard());
+}
+async function shareResult(){
+  if(!snap)return;toast(i18n[lang].making);
+  const blob=await makeCard(),file=new File([blob],'my-age-calculator.png',{type:'image/png'});
+  if(window.Android&&window.Android.shareImage){const fr=new FileReader();fr.onload=()=>window.Android.shareImage(fr.result.split(',')[1],'my-age-calculator.png');fr.readAsDataURL(blob);return}
+  if(navigator.canShare&&navigator.canShare({files:[file]})){
+    try{await navigator.share({files:[file],title:'My Age Calculator',text:'My Age Calculator'+(SITE?' · '+SITE:'')});return}catch(e){if(e&&e.name==='AbortError')return}
+  }
+  saveImage(blob);
+}
+function showModal(){$('customModal').classList.add('active')}
+function closeModal(e){if(e.target.id==='customModal')closeModalDirect()}
+function closeModalDirect(){$('customModal').classList.remove('active')}
 
-      populateMonths();
-      renderGrid();
-
-      if (lastCalculatedDate) {
-        reCalculate();
-      }
-    }
-
-    function populateMonths() {
-      const monthSelect = document.getElementById('month');
-      const curVal = monthSelect.value || 1;
-      monthSelect.innerHTML = '';
-      i18n[currentLang].months.forEach((m, idx) => {
-        const opt = document.createElement('option');
-        opt.value = idx + 1;
-        opt.textContent = m;
-        if (idx + 1 == curVal) opt.selected = true;
-        monthSelect.appendChild(opt);
-      });
-    }
-
-    function switchCategory(cat) {
-      activeCat = cat;
-      document.getElementById('tabZodiac').className = `tab-btn ${cat === 'zodiac' ? 'active' : ''}`;
-      document.getElementById('tabMuchal').className = `tab-btn ${cat === 'muchal' ? 'active' : ''}`;
-      renderGrid();
-    }
-
-    function renderGrid() {
-      const container = document.getElementById('gridContainer');
-      container.innerHTML = '';
-      document.getElementById('detailView').classList.add('hidden');
-      const dict = i18n[currentLang];
-
-      if (activeCat === 'zodiac') {
-        Object.keys(dict.zodiacs).forEach(key => {
-          const item = dict.zodiacs[key];
-          const btn = document.createElement('button');
-          btn.className = 'z-item-btn';
-          btn.textContent = item.name;
-          btn.onclick = () => showDetail(item.name, item.date, item.text, btn);
-          container.appendChild(btn);
-        });
-      } else {
-        dict.muchals.forEach(item => {
-          const btn = document.createElement('button');
-          btn.className = 'z-item-btn';
-          btn.textContent = item.name;
-          btn.onclick = () => showDetail(item.name, item.years, item.text, btn);
-          container.appendChild(btn);
-        });
-      }
-    }
-
-    function showDetail(title, sub, text, btn) {
-      document.querySelectorAll('.z-item-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      document.getElementById('detTitle').querySelector('span').textContent = title;
-      document.getElementById('detSub').textContent = sub;
-      document.getElementById('detText').textContent = text;
-      document.getElementById('detailView').classList.remove('hidden');
-    }
-
-    function calculateAge(e) {
-      if(e) e.preventDefault();
-      const d = parseInt(document.getElementById('day').value);
-      const m = parseInt(document.getElementById('month').value);
-      const y = parseInt(document.getElementById('year').value);
-
-      if (!d || !m || !y) return;
-      lastCalculatedDate = { d, m, y };
-      reCalculate();
-    }
-
-    function reCalculate() {
-      if (!lastCalculatedDate) return;
-      const { d, m, y } = lastCalculatedDate;
-      const dict = i18n[currentLang];
-
-      const birth = new Date(y, m - 1, d);
-      const now = new Date();
-
-      let years = now.getFullYear() - y;
-      let months = now.getMonth() - (m - 1);
-      let days = now.getDate() - d;
-
-      if (days < 0) {
-        months--;
-        const prev = new Date(now.getFullYear(), now.getMonth(), 0);
-        days += prev.getDate();
-      }
-      if (months < 0) {
-        years--;
-        months += 12;
-      }
-
-      const diff = now - birth;
-      const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-      let nextBday = new Date(now.getFullYear(), m - 1, d);
-      if (now > nextBday) nextBday.setFullYear(now.getFullYear() + 1);
-      const daysLeft = Math.ceil((nextBday - now) / (1000 * 60 * 60 * 24));
-
-      document.getElementById('resY').textContent = years;
-      document.getElementById('resM').textContent = months;
-      document.getElementById('resD').textContent = days;
-      document.getElementById('resTotalDays').textContent = totalDays.toLocaleString();
-
-      const zKeys = ["Capricorn", "Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn"];
-      const zDates = [20, 19, 21, 20, 21, 21, 23, 23, 23, 23, 22, 22];
-      const zKey = d < zDates[m - 1] ? zKeys[m - 1] : zKeys[m];
-      document.getElementById('resZodiac').textContent = dict.zodiacs[zKey].name;
-
-      const mIndex = (y - 4) % 12;
-      document.getElementById('resMuchal').textContent = dict.muchals[mIndex].name;
-
-      document.getElementById('resNextBday').textContent = `${daysLeft} ${dict.daysLeftSuffix}`;
-      document.getElementById('results').classList.remove('hidden');
-    }
-
-    function clearAll() {
-      document.getElementById('day').value = '';
-      document.getElementById('year').value = '';
-      document.getElementById('results').classList.add('hidden');
-      lastCalculatedDate = null;
-    }
-
-    function showModal() {
-      document.getElementById('customModal').classList.add('active');
-    }
-
-    function closeModal(e) {
-      if (e.target.id === 'customModal') {
-        document.getElementById('customModal').classList.remove('active');
-      }
-    }
-
-    function closeModalDirect() {
-      document.getElementById('customModal').classList.remove('active');
-    }
-
-    populateMonths();
-    renderGrid();
-  </script>
+$('year').max=new Date().getFullYear();
+{let sl='uz';try{sl=localStorage.getItem('age_lang')||'uz'}catch(_){}if(!i18n[sl])sl='uz';$('langSelect').value=sl;switchLanguage(sl)}
+try{const s=JSON.parse(localStorage.getItem('age_dob'));if(s&&s.d&&s.m&&s.y){last=s;$('day').value=s.d;$('month').value=s.m;$('year').value=s.y;reCalculate(true)}}catch(_){}
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%2*120)+'ms';io.observe(el)});
+function adLoop(){if(!last)countUp($('adNum'),3000+Math.floor(Math.random()*27000),1600)}
+adLoop();setInterval(adLoop,3200);
+</script>
 </body>
 </html>
